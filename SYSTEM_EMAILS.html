@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SYSTEM_EMAILS.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="Kultura Connect Platform-%E2%80%93-system-emails-reference">Kultura Connect Platform – System Emails Reference</h1>
+<p>Full catalogue of every automated email sent by the platform: trigger, recipients, subject, and HTML body preview.</p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Email</th>
+<th>App</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="New_Booking_Vendor_Notification.html" target="_blank">New Booking – Vendor Notification</a></td>
+<td><code>customers</code></td>
+<td>New booking created</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="Booking_Cancelled_by_Vendor_email_to_Customer.html" target="_blank">Booking Confirmed by Vendor</a></td>
+<td><code>customers</code></td>
+<td>Status → confirmed, vendor_confirm = True</td>
+</tr>
+<tr>
+<td>3a</td>
+<td><a href="Booking_Confirmed_by_Admin_email_to_Customer.html" target="_blank">Booking Confirmed by Admin → Customer</a></td>
+<td><code>customers</code></td>
+<td>Status → confirmed, vendor_confirm = False</td>
+</tr>
+<tr>
+<td>3b</td>
+<td><a href="Booking_Confirmed_by_Admin_email_to_Vendor.html" target="_blank">Booking Confirmed by Admin → Vendor</a></td>
+<td><code>customers</code></td>
+<td>Status → confirmed, vendor_confirm = False</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="Booking_Cancelled_by_Customer_email_to_Vendor.html" target="_blank">Booking Cancelled by Customer → Vendor</a></td>
+<td><code>customers</code></td>
+<td>Status → cancelled, customer_cancel = True</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="Booking_Cancelled_by_Vendor_email_to_Customer.html" target="_blank">Booking Cancelled by Vendor → Customer</a></td>
+<td><code>customers</code></td>
+<td>Status → cancelled, vendor_cancel = True</td>
+</tr>
+<tr>
+<td>6a</td>
+<td><a href="Booking_Cancelled_by_Admin_email_to_Customer.html" target="_blank">Booking Cancelled by Admin → Customer</a></td>
+<td><code>customers</code></td>
+<td>Status → cancelled, no cancel flag</td>
+</tr>
+<tr>
+<td>6b</td>
+<td><a href="Booking_Cancelled_by_Admin_email_to_Vendor.html" target="_blank">Booking Cancelled by Admin → Vendor</a></td>
+<td><code>customers</code></td>
+<td>Status → cancelled, no cancel flag</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="Booking_Status_Updated.html" target="_blank">Booking Status Updated</a></td>
+<td><code>customers</code></td>
+<td>Any other status change</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="Booking_Auto-Expired.html" target="_blank">Booking Auto-Expired</a></td>
+<td><code>customers</code></td>
+<td>Management command <code>--notify-customers</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="Vendor_Welcome_Email.html" target="_blank">Vendor Welcome Email</a></td>
+<td><code>vendors</code></td>
+<td>New vendor account created</td>
+</tr>
+<tr>
+<td>9a</td>
+<td><a href="Customer_Welcome_Email.html" target="_blank">Customer Welcome Email</a></td>
+<td><code>customers</code></td>
+<td>New customer account created</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="#" target="_blank">Newsletter Broadcast</a></td>
+<td><code>newsletter</code></td>
+<td>NewsletterSend created with send_now = True</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-new-booking-%E2%80%93-vendor-notification">1. New Booking – Vendor Notification</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_new_booking()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, <code>created=True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Vendor ⚠️ currently hardcoded to  — should be vendor email</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>New booking</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #ff6b35, #f7931e); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#ff6b35</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.btn</span> { <span class="hljs-attribute">display</span>: inline-block; <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span> <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>; <span class="hljs-attribute">text-decoration</span>: none; <span class="hljs-attribute">font-weight</span>: bold; <span class="hljs-attribute">margin</span>: <span class="hljs-number">8px</span> <span class="hljs-number">4px</span>; }
+    <span class="hljs-selector-class">.btn-accept</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#28a745</span>; <span class="hljs-attribute">color</span>: white; }
+    <span class="hljs-selector-class">.btn-reject</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#dc3545</span>; <span class="hljs-attribute">color</span>: white; }
+    <span class="hljs-selector-class">.deadline</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff3cd</span>; <span class="hljs-attribute">border-left</span>: <span class="hljs-number">4px</span> solid <span class="hljs-number">#ffc107</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>🍊 New Booking Request<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Action required – please respond before the deadline<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor.business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You have received a new booking request. Please review the details below and accept or reject.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>👤 Customer Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.first_name} {customer.last_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Phone:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.phone}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"deadline"</span>&gt;</span>
+      ⏰ <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Response Deadline:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {deadline_str}<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+      If you do not respond, the booking will be auto-expired.
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align:center; margin-top: 24px;"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{accept_url}"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-accept"</span>&gt;</span>✅ Accept Booking<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{reject_url}"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-reject"</span>&gt;</span>❌ Reject Booking<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="2-booking-confirmed-by-vendor">2. Booking Confirmed by Vendor</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status = <code>confirmed</code>, <code>vendor_confirm = True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Confirmed by Vendor</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #<span class="hljs-number">28</span>a745, #<span class="hljs-number">20</span>c997); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#28a745</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>✅ Booking Confirmed!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Great news – your booking has been confirmed by the vendor<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Great news! Your booking has been confirmed by the vendor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>📞 If you have any questions, you can contact the vendor directly at <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor_phone}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We look forward to seeing you there!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="3a-booking-confirmed-by-admin-%E2%86%92-customer">3a. Booking Confirmed by Admin → Customer</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status = <code>confirmed</code>, <code>vendor_confirm = False</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Confirmed by Administrator</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #<span class="hljs-number">007</span>bff, #<span class="hljs-number">6610</span>f2); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#007bff</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>✅ Booking Confirmed by Administrator<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your booking has been confirmed by the Kultura Connect Platform system administrator.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>📞 If you have any questions, you can contact the vendor directly at <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor_phone}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="3b-booking-confirmed-by-admin-%E2%86%92-vendor">3b. Booking Confirmed by Admin → Vendor</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Same as 3a</td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Confirmed by Administrator</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #<span class="hljs-number">007</span>bff, #<span class="hljs-number">6610</span>f2); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#007bff</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>📋 Booking Confirmed by Administrator<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor.business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A booking for your activity has been confirmed by the Kultura Connect Platform system administrator.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>👤 Customer Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.first_name} {customer.last_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Phone:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.phone}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="4-booking-cancelled-by-customer-%E2%86%92-vendor">4. Booking Cancelled by Customer → Vendor</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status = <code>cancelled</code>, <code>customer_cancel = True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Cancelled by Customer</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #dc3545, #c82333); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#dc3545</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>❌ Booking Cancelled by Customer<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor.business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A customer has cancelled their booking for one of your activities.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>👤 Customer Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.first_name} {customer.last_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Phone:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.phone}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The slot is now available again for other bookings.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="5-booking-cancelled-by-vendor-%E2%86%92-customer">5. Booking Cancelled by Vendor → Customer</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status = <code>cancelled</code>, <code>vendor_cancel = True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Cancelled by Vendor</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #dc3545, #c82333); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#dc3545</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>❌ Booking Cancelled by Vendor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We're sorry to let you know that the vendor has cancelled your booking.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>📞 For more information or to reschedule, please contact the vendor at <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor_phone}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We apologise for the inconvenience. You can search for alternative activities on the platform.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="6a-booking-cancelled-by-admin-%E2%86%92-customer">6a. Booking Cancelled by Admin → Customer</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status = <code>cancelled</code>, <code>vendor_cancel = False</code> AND <code>customer_cancel = False</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Cancelled by Administrator</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #<span class="hljs-number">6</span>c757d, #<span class="hljs-number">495057</span>); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#6c757d</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>❌ Booking Cancelled by Administrator<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your booking has been cancelled by the Kultura Connect Platform system administrator.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>📞 If you have any questions, please contact support or reach the vendor at <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor_phone}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We apologise for the inconvenience.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="6b-booking-cancelled-by-admin-%E2%86%92-vendor">6b. Booking Cancelled by Admin → Vendor</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Same as 6a</td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Cancelled by Administrator</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #<span class="hljs-number">6</span>c757d, #<span class="hljs-number">495057</span>); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#6c757d</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>❌ Booking Cancelled by Administrator<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor.business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A booking for your activity has been cancelled by the Kultura Connect Platform system administrator.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>👤 Customer Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.first_name} {customer.last_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Phone:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {customer.phone}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="7-booking-status-updated">7. Booking Status Updated</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_sms_booking_status()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>ActivityBooking</code>, status changes to anything other than <code>confirmed</code> or <code>cancelled</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>⚠️ hardcoded  — should be <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Status Updated</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #ff6b35, #f7931e); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#ff6b35</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>🔔 Booking Status Updated<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your booking status has been updated to <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{booking.status}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Booking ID:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> #{booking.id}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>New Status:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.status}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>📞 For more information please contact the vendor at <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{vendor_phone}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="8-booking-auto-expired">8. Booking Auto-Expired</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/management/commands/expire_pending_bookings.py</code> → <code>send_expiry_notification()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Management command: <code>python manage.py expire_pending_bookings --notify-customers</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td><code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Booking Request Expired - {activity_name}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #fd7e14, #e83e8c); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-align</span>: center; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">24px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.detail-box</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#fd7e14</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">24px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>⏰ Booking Request Expired<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The vendor did not respond in time<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hi <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{customer.first_name or customer.username}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Unfortunately, your booking request has expired because the vendor did not respond within the required timeframe.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"detail-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Expired Booking Details<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Activity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {activity_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.date}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Quantity:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {booking.quantity} people<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Vendor:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {vendor_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You can search for alternative activities or try booking with a different vendor on the Kultura Connect Platform platform.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We apologise for the inconvenience.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. This is an automated message. Please do not reply.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="9-vendor-welcome-email">9. Vendor Welcome Email</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>vendors/signals.py</code> → <code>send_vendor_welcome_email()</code></td>
+</tr>
+<hr>
+<h2 id="9a-customer-welcome-email">9a. Customer Welcome Email</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>customers/signals.py</code> → <code>send_customer_welcome_email()</code> (new)</td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>Customer</code>, <code>created=True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Customer</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td><code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Welcome to Kultura Connect Platform!</code></td>
+</tr>
+<tr>
+<td><strong>Template</strong></td>
+<td><code>templates/customers/emails/customer_welcome.html</code> (new)</td>
+</tr>
+</tbody>
+</table>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>Vendor</code>, <code>created=True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td><code>settings.DEFAULT_FROM_EMAIL</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>Welcome to Kultura Connect Platform - Your Vendor Account is Ready!</code></td>
+</tr>
+<tr>
+<td><strong>Template</strong></td>
+<td><code>templates/vendors/emails/vendor_welcome.html</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong> <em>(rendered from <code>vendor_welcome.html</code>)</em>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, sans-serif; <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>; <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; }
+    <span class="hljs-selector-class">.header</span> { <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, #ff6b35, #f7931e); <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span> <span class="hljs-number">20px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.content</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#f9f9f9</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>; }
+    <span class="hljs-selector-class">.credentials</span> { <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#ff6b35</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.btn</span> { <span class="hljs-attribute">display</span>: inline-block; <span class="hljs-attribute">background</span>: <span class="hljs-number">#ff6b35</span>; <span class="hljs-attribute">color</span>: white; <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span> <span class="hljs-number">24px</span>; <span class="hljs-attribute">text-decoration</span>: none; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-class">.footer</span> { <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#666</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">30px</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>🍊 Welcome to Kultura Connect Platform<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your vendor account has been successfully created<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Hello {user.first_name or user.username}!<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Congratulations! Your vendor account for <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>{business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> has been successfully created on the Kultura Connect Platform platform.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"credentials"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📋 Your Account Details:<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Username:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {username}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Email:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {user.email}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Business:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {business_name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Phone:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {user.phone}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>  <span class="hljs-comment">&lt;!-- shown only if set --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>🔐 <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Important:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> Please keep your login credentials secure.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>🚀 Next Steps:<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Complete your vendor profile with additional business information<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Upload your business logo and images<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Add your services and products<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Start connecting with customers!<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align: center;"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{login_url}"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>&gt;</span>Login to Your Account<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>📞 Need Help?<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>If you have any questions or need assistance getting started, please contact our support team.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Best regards,<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>The Kultura Connect Platform Team<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>© Kultura Connect Platform Platform. All rights reserved.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is an automated message. Please do not reply to this email.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="10-newsletter-broadcast">10. Newsletter Broadcast</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>File</strong></td>
+<td><code>newsletter/signals.py</code> → <code>send_newsletter_immediately()</code></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><code>post_save</code> on <code>NewsletterSend</code>, <code>created=True</code> and <code>send_now=True</code></td>
+</tr>
+<tr>
+<td><strong>To</strong></td>
+<td>All subscribers in the linked subscription list</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td><code>settings.DEFAULT_FROM_EMAIL</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td><code>{newsletter.title}</code> (dynamic, set in admin)</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><code>{newsletter.content}</code> — full HTML content entered via admin CKEditor</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The body is entirely freeform HTML entered by the admin when creating the newsletter. No fixed template.</p>
+</blockquote>
+<hr>
+<h2 id="known-issues--todos">Known Issues &amp; TODOs</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Issue</th>
+<th>File</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>All booking emails use hardcoded </td>
+<td><code>customers/signals.py</code></td>
+<td>Replace with <code>settings.DEFAULT_FROM_EMAIL</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>New booking email is sent to hardcoded  instead of the vendor</td>
+<td><code>customers/signals.py</code> → <code>send_sms_new_booking()</code></td>
+<td>Change recipient to <code>vendor_email</code> variable (already available in the function)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Functions named <code>send_sms_*</code> but they send emails, not SMS</td>
+<td><code>customers/signals.py</code></td>
+<td>Rename to <code>send_email_*</code> or implement real SMS via Twilio/etc.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>--notify-customers</code> flag must be passed manually to the management command</td>
+<td><code>expire_pending_bookings.py</code></td>
+<td>Add to a cron job / Celery beat task to run automatically</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Newsletter scheduling is not implemented</td>
+<td><code>newsletter/signals.py</code></td>
+<td><code>TODO: schedule_newsletter(instance)</code> comment — needs Celery or APScheduler</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

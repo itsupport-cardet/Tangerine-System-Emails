@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 24px; border-radius: 10px 10px 0 0; text-align: center; }
+    .content { background: #f9f9f9; padding: 24px; border-radius: 0 0 10px 10px; }
+    .detail-box { background: white; border: 2px solid #ff6b35; border-radius: 8px; padding: 16px; margin: 16px 0; }
+    .btn { display: inline-block; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 8px 4px; }
+    .btn-accept { background: #28a745; color: white; }
+    .btn-reject { background: #dc3545; color: white; }
+    .deadline { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin: 16px 0; }
+    .footer { text-align: center; font-size: 13px; color: #888; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+     <img src="KulturaLogoHorizontal.png" alt="Kultura Connect Logo" style="max-height:60px; display:block; margin:0 auto 10px;">
+    <h1>New Booking Request</h1>
+    <p>Action required – please respond before the deadline</p>
+  </div>
+  <div class="content">
+    <p>Hi <strong>Sunrise Adventures</strong>,</p>
+    <p>You have received a new booking request. Please review the details below and accept or reject.</p>
+
+    <div class="detail-box">
+      <h3>📋 Booking Details</h3>
+      <p><strong>Activity:</strong> Kayak Tour</p>
+      <p><strong>Date:</strong> April 21, 2026</p>
+      <p><strong>Quantity:</strong> 4 people</p>
+    </div>
+
+    <div class="detail-box">
+      <h3>👤 Customer Details</h3>
+      <p><strong>Name:</strong> Jane Doe</p>
+      <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+    </div>
+
+    <div class="deadline">
+      ⏰ <strong>Response Deadline:</strong> March 10, 2026, 5:00 PM UTC<br>
+      If you do not respond, the booking will be auto-expired.
+    </div>
+
+    <div style="text-align:center; margin-top: 24px;">
+      <a href="{accept_url}" class="btn btn-accept">✅ Accept Booking</a>
+      <a href="{reject_url}" class="btn btn-reject">❌ Reject Booking</a>
+    </div>
+  </div>
+  <div class="footer">
+    <p>© Kultura Connect. This is an automated message. Please do not reply.</p>
+  </div>
+</body>
+</html>
